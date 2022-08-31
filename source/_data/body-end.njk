@@ -1,0 +1,83 @@
+{# 鼠标点击特效 #}
+{% if theme.cursor_effect == "fireworks" %}
+  <script async src="/js/fireworks.js"></script>
+{% elseif theme.cursor_effect == "explosion" %}
+  <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas>
+  <script src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script>
+  <script async src="/js/explosion.min.js"></script>
+{% elseif theme.cursor_effect == "love" %}
+  <script async src="/js/love.min.js"></script>
+{% elseif theme.cursor_effect == "text" %}
+  <script async src="/js/text.js"></script>
+{% endif %}
+
+{# 打字特效 #}
+{% if theme.typing_effect %}
+  <script src="/js/activate-power-mode.min.js"></script>
+  <script>
+    POWERMODE.colorful = {{ theme.typing_effect.colorful }};
+    POWERMODE.shake = {{ theme.typing_effect.shake }};
+    document.body.addEventListener('input', POWERMODE);
+  </script>
+{% endif %}
+
+{# wobble窗口摆动特效 #}
+{% if theme.wobble %}
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效 记得同步到header.njk
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        {% if theme.wobble.header %}
+          $('body>main>header').wobbleWindow({
+            radius: {{ theme.wobble.radius }},
+            movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+            debug: false,
+          });
+        {% endif %}
+
+        //{% if theme.wobble.sidebar %}
+        //  $('body header>aside').wobbleWindow({
+        //    radius: {{ theme.wobble.radius }},
+        //    movementLeft: false,
+        //    movementTop: false,
+        //    movementBottom: false,
+        //    position: 'fixed',
+        //    debug: false,
+        //  });
+        //{% endif %}
+
+        {% if theme.wobble.footer %}
+          $('body>footer').wobbleWindow({
+            radius: {{ theme.wobble.radius }},
+            movementBottom: false,
+            movementLeft: false,
+            movementRight: false,
+            debug: false,
+          });
+        {% endif %}
+      });
+    }
+  </script>
+{% endif %}
+
+{# 页尾整体调整函数 #} {% if theme.footer.ages.enable %}
+<script>
+  $(document).ready(function(){
+    var beian = document.querySelector(".footer-inner > .beian > a");
+    var cpr=document.querySelector(".footer-inner > .copyright");
+    var cnz=document.querySelector(".workDays");//.parentNode;
+    var bsz=document.querySelector(".busuanzi-count");
+    if(cnz!=null&&bsz!=null)
+      cnz.parentNode.insertBefore(bsz,cnz);
+    if(bsz == null || bsz == undefined || document.querySelector("#busuanzi_value_site_pv").innerText=="" || document.querySelector("#busuanzi_value_site_uv").innerText == "")
+      bsz.remove();
+    checkIndex();
+    if(beian){cpr.classList.add('split-line');cpr.appendChild(beian);}
+  })
+  $(document).on('pjax:complete',checkIndex);
+</script>
+{% endif %}
+

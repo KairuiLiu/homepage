@@ -1,0 +1,403 @@
+
+code[class*="language-"], pre[class*="language-"], code {
+  @font-face {
+    font-family: fira;
+    src: url('/fonts/FiraCode-Regular.woff2');
+  }
+  font-family: fira, consolas, Menlo, monospace, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+
+.token.operator, .token.entity, .token.url, .language-css .token.string, .style .token.string{
+  background: inherit;
+}
+
+.post{
+   margin-top: 60px;
+   margin-bottom: 60px;
+   padding: 25px;
+   -webkit-box-shadow: 0 0 5px rgba(202, 203, 203, .5);
+   -moz-box-shadow: 0 0 5px rgba(202, 203, 204, .5);
+}
+
+.main-menu.menu{
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 20px 0;
+}
+.main-inner.index.posts-expand{
+  margin-top: 30px;
+}
+.main-inner.index.posts-expand>.post-block{
+   padding-top: 40px;
+}
+
+body {
+    cursor: url("/imgs/pointer.ico"),auto!important
+}
+a:hover {
+    cursor: url("/imgs/link.ico"),auto!important
+}
+
+.post-eof{
+  background:rgba(0,0,0,0);
+  margin-bottom:0;
+}
+
+div.main-inner.index.posts-expand > div > article{
+  padding:30px 30px 0;
+  -webkit-box-shadow: 0 0 5px rgba(202, 203, 203, .5);
+  -moz-box-shadow: 0 0 5px rgba(202, 203, 204, .5);
+}
+
+body > main > div.main-inner.index.posts-expand > div:nth-child(15)>article{
+  padding-bottom:81px;
+  margin-bottom:-20px !important;
+}
+
+.main-inner{
+  padding-bottom: 0;
+}
+
+.sidebar {
+  box-shadow: none;
+}
+
+.wobbleTransparentBK{
+  background-color: rgba(0,0,0,0) !important;
+}
+
+.wobbleTransparentLine{
+  border-color: rgba(0,0,0,0) !important;
+}
+
+.pagination{
+  margin-top: 90px;
+}
+
+//防止sidebar和footer同时开启动效时堆叠异常
+#sidebar, header {
+  z-index: 1 !important;
+}
+
+//防止挡住页末文章的阅读全文按钮
+.main {
+  padding-bottom: 50px;
+}
+
+body footer .copyright.split-line .author::after {
+    content: '|';
+    margin: 0 0.5em;
+}
+
+.site-pv #busuanzi_value_site_pv{
+  color: #1890ff !important;
+}
+
+.site-uv #busuanzi_value_site_uv{
+  color: #1890ff !important;
+}
+
+#busuanzi_value_site_uv::before{
+  content: '我的第';
+  margin: 0 0.3em;
+  color:#999 !important;
+}
+
+.site-pv #busuanzi_value_site_pv::before {
+  content: '位朋友，历经';
+  margin: 0 0.3em 0 0;
+  color:#999 !important;
+}
+
+.site-pv #busuanzi_value_site_pv::after{
+  content: '次回眸才与你相遇';
+  color:#999 !important;
+  margin: 0 0.3em;
+}
+
+.footer-inner #busuanzi_container_site_pv::before{
+  content:"";
+  margin: 0;
+}
+
+#busuanzi_container_site_uv,
+#busuanzi_container_site_pv{
+  display: inline !important;
+}
+
+#busuanzi_container_site_uv .post-meta-item-icon,
+#busuanzi_container_site_pv .post-meta-item-icon,
+.busuanzi-count>.post-meta-divider{
+  display none;
+}
+
+header.post-header .post-meta{
+  margin-bottom: 30px;
+}
+
+article .post-body .post-button{
+  margin: 30px auto -30px;
+}
+
+.popular-posts-header{
+  margin-top:40px;
+}
+
+.popular-posts-header::before{
+  content:'-------- 本文结束 \f7b6 感谢阅读 --------';
+  display:block;
+  text-align:center;
+  color:#bfbfbf;
+  font-size:16px;
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 600;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  line-height: 1;
+}
+
+.nindex {
+  height:100%;
+  box-sizing: border-box;
+  font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+      Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+      sans-serif;
+  font-size: calc(10px + 0.33vw);
+  -webkit-font-smoothing: antialiased;
+  padding: 5vh 10vw;
+  color: #121314;
+}
+
+.darkmode--activated .nindex{
+  color: #ccc;
+}
+
+.nindexBK{
+  background: rgba(0,0,0,0);
+  height:100%
+  display: none
+}
+
+.nindexBKC{
+  position: absolute;
+  background-color: #f5f5f5;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+}
+
+.darkmode--activated .nindexBKC{
+  background-color: #1e2021
+}
+
+.nindex{
+  position: absolute;
+  overflow: auto;
+  webkit-scrollbar { width: 0 !important };
+  -ms-overflow-style: none;
+  overflow: -moz-scrollbars-none;
+  width:100%;
+}
+
+.nindex::-webkit-scrollbar { width: 0 !important }
+
+.nindex h1 {
+  font-size: 4.5em;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+.nindex p {
+  font-size: 1.6em;
+  font-weight: 300;
+  line-height: 1.4;
+  max-width: 28em;
+}
+
+.nindex a {
+  text-decoration: none;
+  color: #121314;
+  position: relative;
+}
+
+.darkmode--activated .nindex a {
+  color: #ccc;
+}
+
+.nindex a:after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 60%;
+  left: -0.1em;
+  right: -0.1em;
+  bottom: 0;
+  transition: top 200ms cubic-bezier(0, 0.8, 0.13, 1);
+  background-color: rgba(79, 192, 141, 1);
+}
+
+.nindex a:hover:after {
+  top: 0%;
+}
+
+.headband{
+  display: none;
+}
+
+div.toggle.sidebar-toggle{
+  visibility: hidden;
+}
+
+.nindex ul{
+  max-height: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: max-height .5s;
+}
+
+.nindex ul.ulactive{
+  box-sizing: border-box;
+  overflow: hidden;
+  max-height: calc((2.2em+20px)*3);
+  transition: max-height .5s;
+}
+
+.nindex li{
+  list-style-type:none;
+}
+
+
+
+.darkmode--activated {
+  --body-bg-color: #bfa;
+  --content-bg-color: #333;
+  --card-bg-color: #555;
+  --text-color: #ccc;
+  --blockquote-color: #bbb;
+  --link-color: #ccc;
+  --link-hover-color: #eee;
+  --brand-color: #ddd;
+  --brand-hover-color: #ddd;
+  --table-row-odd-bg-color: #181a1b;
+  --table-row-hover-bg-color: #363636;
+  --menu-item-bg-color: #555;
+  --btn-default-bg: #222;
+  --btn-default-color: #ccc;
+  --btn-default-border-color: #555;
+  --btn-default-hover-bg: #666;
+  --btn-default-hover-color: #ccc;
+  --btn-default-hover-border-color: #666;
+  --highlight-background: #282b2e;
+  --highlight-foreground: #a9b7c6;
+  --highlight-gutter-background: #34393d;
+  --highlight-gutter-foreground: #9ca9b6;
+}
+
+.darkmode--activated img {
+  opacity: 0.75;
+}
+
+.darkmode--activated img:hover {
+  opacity: 0.9;
+}
+
+.darkmode--activated code {
+  color: #69dbdc;
+  background: transparent;
+}
+
+#wobblew{
+  background-color: #fff;
+}
+
+.darkmode--activated #wobblew{
+  background-color: #181a1b;
+}
+
+//Next.Muse中为Header和Footer添加背景色注意夜间模式
+.footer, .header{
+  background-color: #f5f5f5 !important;
+  if (hexo-config('darkmode')) {
+    @media (prefers-color-scheme: dark) {
+      background-color: rgb(46, 46, 46) !important;
+    }
+  }
+}
+
+.header,.footer{
+  background-color: #f5f5f5 !important;
+}
+
+body.darkmode--activated .header,
+body.darkmode--activated .footer{
+  background-color: #1e2021 !important;
+}
+
+body.darkmode--activated{
+  background-color: #181a1b;
+}
+
+body.darkmode--activated :not(pre) > code[class*="language-"],
+body.darkmode--activated pre[class*="language-"]{
+  background-color: #2e3440;
+}
+
+body.darkmode--activated pre[class*="language-"],
+body.darkmode--activated code[class*="language-"]{
+  text-shadow: none;
+}
+
+body.darkmode--activated .token.operator,
+body.darkmode--activated .token.entity,
+body.darkmode--activated .token.url,
+body.darkmode--activated .language-css .token.string,
+body.darkmode--activated .style .token.string{
+  background: rgba(0,0,0,0);
+}
+
+body.darkmode--activated .nindex a:after{
+  background-color: #2e3440;
+}
+
+button.darkmode-toggle{
+  bottom: 80px;
+  left: calc(43px - 1.5rem);
+}
+
+tr.header{
+  opacity: 1 !important;
+}
+
+#at-expanding-share-button{
+  bottom: 138px;
+  left: calc(43px - 1.5rem);
+}
+
+#at-expanding-share-button .at-expanding-share-button-toggle-bg,
+#at-expanding-share-button .at-expanding-share-button-toggle-bg span,
+#at-expanding-share-button .at-expanding-share-button.at-expanding-share-button-desktop .at-expanding-share-button-toggle
+{
+  width: 48px;
+  height: 48px
+}
+
+#at-expanding-share-button .at-expanding-share-button-toggle-bg span{
+  background-color: #000 !important;
+}
+
+#at-expanding-share-button a.at-share-btn{
+  border-bottom: none
+}
+
+#at-expanding-share-button .at-expanding-share-button-toggle-bg{
+  filter: invert(0%);
+  transition-property: -moz-filter, -ms-filter, -o-filter, -webkit-filter, filter;
+  transition: filter  0.5s ease;
+}
+
+body.darkmode--activated #at-expanding-share-button .at-expanding-share-button-toggle-bg{
+  filter: invert(100%);
+}

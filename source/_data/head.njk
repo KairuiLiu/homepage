@@ -1,0 +1,75 @@
+<div class="nindexBK">
+<div class="nindexBKC"></div>
+<div class="nindex">
+  <h1>Hey👋</h1>
+  <p style="font-weight: 500; font-size: 2.2em">欢迎访问Liu Kairui的个人站.</p>
+  <p>
+      我是一个来自重庆的在校大学生, 偏爱于前端技术<!--与OS设计-->, 偶尔使用 JS / Go 进行轻量项目开发, 欢迎访问我的
+      <a href="https://github.com/KairuiLiu" target="_blank"><i class="fab fa-github-alt"></i> GitHub</a> .
+  </p>
+  <p>
+      这个网站主要用来存储学习 / 瞎搞的笔记, 同时提供了邮件、图床等服务. 对于一些自认为有趣的<a href="javascript:;" id="myProj">项目</a>, 我也会将项目介绍, 文档, 甚至是设计指南发布在这里.
+  </p>
+  <ul>
+    <li><p><a href="/artrank/" target="_blank">ArtRank</a>: 基于Node.JS的PageRank文献管理推荐系统</p></li>
+    <li><p><a href="/gooj/" target="_blank">GoOJ</a>: 基于Golang的高校在线评测系统</p></li>
+    <li><p><a href="/projects/" target="_blank">更多 <i class="fas fa-angle-right"></i></a></p></li>
+
+  </ul>
+  <p>
+      可以在这些平台找到我: 
+      <a href="https://www.zhihu.com/people/liu-kai-rui-18" target="_blank">知乎</a>,
+      <a href="https://space.bilibili.com/33238144" target="_blank">bilibili</a>
+      和
+      <a href="https://www.coolapk.com/u/805314?from=qr" target="_blank">酷安</a>.
+  </p>
+
+  <p>
+      下滑即可进入博客 <i class="fas fa-arrow-down"></i>
+  </p>
+</div>
+</div>  
+
+{# 搞怪网页标题 #} {% if theme.title_trick.enable %}
+<script>
+  var OriginTitile = document.title;
+  var titleTime;
+  document.addEventListener("visibilitychange", function() {
+    if (document.hidden) {
+      document.title = "{{ theme.title_trick.leave }} | " + OriginTitile;
+      clearTimeout(titleTime);
+    } else {
+      document.title = "{{ theme.title_trick.enter }} | " + OriginTitile;
+      titleTime = setTimeout(function() {
+        document.title = OriginTitile;
+      }, 2000);
+    }
+  });
+</script>
+{% endif %}
+
+<script>
+  function checkIndex(){
+    let nindexItems = [[".nindexBK","display","block","none"],[".headband","display","none","block"],["div.toggle.sidebar-toggle","visibility","hidden","visible"]]; // ,["button.darkmode-toggle","visibility","hidden","visible"]];
+    let isIndex = new RegExp("^(\/){0,1}(index){0,1}(\.html){0,1}(/)*$").test(location.pathname);
+    let backCanvas = document.querySelector(".nindexBK");
+    nindexItems.dispShift = function (stat){this.forEach((e) => {try{document.querySelector(e[0]).style[e[1]]=e[2+stat];}catch{}})}
+    if(isIndex){
+      nindexItems.dispShift(0);
+      window.onscroll=function(){
+        if(document.documentElement.scrollTop>backCanvas.offsetHeight*1.05){
+          nindexItems.dispShift(1);window.onscroll=null;
+        }
+      }
+      document.querySelector("#myProj").onclick=()=>{
+        let projlist = document.querySelector(".nindex>ul");
+        projlist.className.indexOf("ulactive")==-1?projlist.classList.add("ulactive"):projlist.classList.remove("ulactive")
+      }
+    }else nindexItems.dispShift(1);
+  }
+  checkIndex();
+</script>
+
+<!--<script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>-->
+
+<link rel="prefetch" href="/search.xml">
