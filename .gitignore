@@ -103,5 +103,5 @@ dist
 .vscode
 /src/.vscode
 
-/public
-/src
+/public.bak
+/src.bak
