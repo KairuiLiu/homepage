@@ -3,7 +3,14 @@ module.exports = {
 		browser: true,
 		es2021: true,
 	},
-	extends: ['eslint:recommended', 'airbnb-base', 'plugin:@typescript-eslint/eslint-recommended', 'plugin:@typescript-eslint/recommended', 'plugin:prettier/recommended', 'prettier'],
+	extends: [
+		'eslint:recommended',
+		'airbnb-base',
+		'plugin:@typescript-eslint/eslint-recommended',
+		'plugin:@typescript-eslint/recommended',
+		'plugin:prettier/recommended',
+		'prettier',
+	],
 	parserOptions: {
 		ecmaVersion: 2022,
 		parser: '@typescript-eslint/parser',
@@ -14,6 +21,7 @@ module.exports = {
 		'no-console': process.env.NODE_ENV === 'development' ? 'off' : 'warn',
 		'no-debugger': process.env.NODE_ENV === 'development' ? 'off' : 'warn',
 		'no-alert': process.env.NODE_ENV === 'development' ? 'off' : 'warn',
+		'no-new': 'off',
 		'import/resolver': 'off',
 		'import/extensions': 'off',
 		'import/no-unresolved': 'off',
@@ -23,5 +31,6 @@ module.exports = {
 		'import/prefer-default-export': 'off',
 		'@typescript-eslint/no-non-null-assertion': 'off',
 		// 'import/no-absolute-path': 'off',
+		'max-len': ['error', { code: 120 }],
 	},
 };

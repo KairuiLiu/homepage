@@ -1,6 +1,6 @@
 module.exports = {
 	// 代码换行长度
-	printWidth: 200,
+	// PrintWidth: 80,
 	// 代码缩进空格数
 	tabWidth: 2,
 	// 使用制表符缩进而不是空格缩进
