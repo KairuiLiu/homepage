@@ -15,6 +15,11 @@ a {
 	font-size: 8.5vmax;
 }
 
+.h15 {
+	font-weight: 800;
+	font-size: 3.5vmax;
+}
+
 .h2 {
 	font-size: 2.25vmax;
 	font-weight: 600;
@@ -32,4 +37,22 @@ a {
 
 .newh {
 	margin: 0;
+}
+
+.main {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	align-content: flex-start;
+	padding: 0 2vmin;
+	& > * {
+		width: 100%;
+	}
+
+	&.main-center {
+		place-content: center flex-start;
+	}
 }

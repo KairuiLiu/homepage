@@ -3,11 +3,12 @@
 
 html,
 body {
-	font-family: Sen, sans-serif;
+	font-family: Sen, 'PingFang SC', 'Microsoft YaHei', sans-serif;
 	box-sizing: border-box;
 	width: 100%;
 	height: 100%;
-	font-size: 16px;
+	font-size: 1vmax;
+	color: #270031;
 }
 
 #app,
@@ -56,12 +57,18 @@ body {
 		padding: 1vmin 2vmin;
 		a,
 		.select {
+			font-size: 1.2vmax;
 			position: relative;
 			display: block;
 			padding: 0.5vmin 2vmin;
 			color: rgba(0, 0, 0, 0.6);
 			opacity: 0.45;
 			border-radius: 5px;
+			& > svg {
+				margin-top: 0.2vmax;
+				width: 1.3vmax;
+				height: 1.3vmax;
+			}
 			&:hover {
 				opacity: 1;
 				background-color: rgba(0, 0, 0, 0.06);
@@ -84,26 +91,24 @@ body {
 			}
 		}
 	}
-}
-
-.main {
-	height: 100%;
-	width: 100%;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-	align-items: center;
-	flex-wrap: wrap;
-	align-content: center;
-	padding: 0 2vmin;
-	& > * {
-		width: 100%;
+	.selfIntro {
+		.detail {
+			max-width: 30vmax;
+			margin-top: 0;
+			margin-bottom: 0;
+			line-height: 1.414;
+		}
+		.state {
+			margin: 0 auto 1vmin;
+		}
 	}
 }
 
 .skill-icons > svg {
+	max-width: 3.5vmin;
 	filter: grayscale(1);
-	transition: all 0.2s;
+	transition: all 0.3s;
+	margin-right: 0.5vw;
 	&:hover {
 		filter: grayscale(0);
 	}
