@@ -15,10 +15,10 @@ export default defineConfig({
 				'apple-touch-icon.png',
 			],
 			manifest: {
-				name: 'ThreeCraft',
-				short_name: 'ThreeCraft',
-				description: 'MineCraft Release Based on Three.js',
-				theme_color: '#87ceeb',
+				name: "Kairui's Website",
+				short_name: "Kairui's Website",
+				description: "Kairui's Website",
+				theme_color: '#FFE3EC',
 				lang: 'zh-Hans',
 				icons: [
 					{
