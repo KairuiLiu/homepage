@@ -102,14 +102,50 @@ body {
 			margin: 0 auto 1vmin;
 		}
 	}
+	.skill-icons > svg {
+		max-width: 3.5vmin;
+		filter: grayscale(1);
+		transition: all 0.3s;
+		margin-right: 0.5vw;
+		&:hover {
+			filter: grayscale(0);
+		}
+	}
 }
 
-.skill-icons > svg {
-	max-width: 3.5vmin;
-	filter: grayscale(1);
-	transition: all 0.3s;
-	margin-right: 0.5vw;
-	&:hover {
-		filter: grayscale(0);
+#page2 {
+	#why-font {
+		line-height: 1.6;
+		max-width: 45vmax;
+		p {
+			margin-top: 0.6vmax;
+			margin-bottom: 0.6vmax;
+		}
+	}
+}
+
+#page3 {
+	#myworks {
+		position: relative;
+		.title {
+			text-align: center;
+		}
+		.workbox {
+			.margin-middle;
+			width: 90vw;
+			height: 50vh;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: center;
+			align-items: center;
+			display: flex;
+			overflow-y: auto;
+			.workItem {
+				.h2;
+				padding: 1.5vmax 3vmax;
+				margin: 2vmax 0;
+			}
+		}
 	}
 }
