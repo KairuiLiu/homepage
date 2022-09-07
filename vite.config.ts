@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite';
+import { resolve } from 'path';
 import path from 'path';
 import styleImport from 'vite-plugin-style-import';
 import { VitePWA } from 'vite-plugin-pwa';
@@ -79,6 +80,10 @@ export default defineConfig({
 		sourcemap: false,
 		// assetsDir: 'static/img',
 		rollupOptions: {
+			input: {
+				main: resolve(__dirname, 'index.html'),
+				en: resolve(__dirname, 'en/index.html'),
+			},
 			output: {
 				chunkFileNames: 'js/[name]-[hash].js',
 				entryFileNames: 'js/[name]-[hash].js',
