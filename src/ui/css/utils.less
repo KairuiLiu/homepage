@@ -77,3 +77,46 @@ a {
 		place-content: center flex-start;
 	}
 }
+
+.demo{
+	margin: 0 0.3vmax;
+	border: 2px solid #270031;
+	border-radius: 1vmax;
+	font-size: 0.8vmax;
+	height: 1vmax;
+	padding: 0.05vmax 0.3vmax;
+	opacity: 0.8;
+}
+
+.nav-bar {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: flex;
+	justify-items: end;
+	align-items: center;
+	flex-direction: row;
+	box-sizing: border-box;
+	justify-content: flex-end;
+	padding: 1vmin 2vmin;
+}
+
+.nav-button {
+	font-size: 1.2vmax;
+	position: relative;
+	display: block;
+	padding: 0.5vmin 2vmin;
+	color: rgba(0, 0, 0, 0.6);
+	opacity: 0.45;
+	border-radius: 5px;
+	& > svg {
+		margin-top: 0.2vmax;
+		width: 1.3vmax;
+		height: 1.3vmax;
+	}
+	&:hover {
+		opacity: 1;
+		background-color: rgba(0, 0, 0, 0.06);
+	}
+}
+

@@ -26,13 +26,20 @@ class Controller {
 		this.canvas = canvas;
 		this.background = background;
 		this.core = new Core(canvas);
-		this.ui = new UI();
+		this.ui = new UI(app, background, ref, canvas);
 		this.listen();
 	}
 
 	listen() {
 		this.scrollHandler();
 		document.addEventListener('scroll', this.scrollHandler.bind(this));
+		this.app
+			.querySelector('#lang')
+			?.addEventListener('click', this.langHandler.bind(this));
+		this.app
+			.querySelector('#dark')
+			?.addEventListener('click', this.darkModeHandler.bind(this));
+		this.ui.setDarkMode(undefined, true);
 	}
 
 	scrollHandler() {
@@ -40,10 +47,19 @@ class Controller {
 		const pagePercentage = lerpPageOffset(
 			-this.ref.getBoundingClientRect().top
 		);
-		this.app.style.top = `-${pagePercentage * clientHeight}px`;
-		this.background.style.background = `linear-gradient(${
-			135 + 180 * pagePercentage
-		}deg, #a0eee1 25%, #ffe3ec 75%)`;
+		this.ui.setAppTop(pagePercentage * clientHeight);
+		this.ui.setBackgroundRotate(pagePercentage);
+	}
+
+	langHandler() {
+		if (/^\/en/.test(document.location.pathname))
+			document.location.replace(document.location.origin);
+		else document.location.replace(`${document.location.origin}/en`);
+		this;
+	}
+
+	darkModeHandler() {
+		this.ui.setDarkMode();
 	}
 }
 
