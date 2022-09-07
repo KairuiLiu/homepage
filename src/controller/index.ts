@@ -7,7 +7,7 @@ class Controller {
 
 	ref: HTMLElement;
 
-	canvas: HTMLCanvasElement;
+	threeEl: HTMLElement;
 
 	background: HTMLElement;
 
@@ -19,14 +19,14 @@ class Controller {
 		app: HTMLElement,
 		background: HTMLElement,
 		ref: HTMLElement,
-		canvas: HTMLCanvasElement
+		threeEl: HTMLElement
 	) {
 		this.app = app;
 		this.ref = ref;
-		this.canvas = canvas;
+		this.threeEl = threeEl;
 		this.background = background;
-		this.core = new Core(canvas);
-		this.ui = new UI(app, background, ref, canvas);
+		this.core = new Core(threeEl);
+		this.ui = new UI(app, background, ref, threeEl);
 		this.listen();
 	}
 

@@ -46,8 +46,8 @@
 
 	// EGG 04
 	setTimeout(() => {
-		sessionStorage.setItem('easter_egg_cn', '🥚 一颗稀松平常的彩蛋(#4)');
-		sessionStorage.setItem('easter_egg_en', '🥚 an ordinary egg(#4)');
+		sessionStorage.setItem('easter_egg_cn', '🥚 一颗稀松平常的彩蛋 (#4)');
+		sessionStorage.setItem('easter_egg_en', '🥚 an ordinary egg (#4)');
 	});
 
 	// EGG 05

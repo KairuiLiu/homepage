@@ -5,7 +5,7 @@ class UI {
 
 	ref: HTMLElement;
 
-	canvas: HTMLCanvasElement;
+	threeEl: HTMLElement;
 
 	background: HTMLElement;
 
@@ -15,11 +15,11 @@ class UI {
 		app: HTMLElement,
 		background: HTMLElement,
 		ref: HTMLElement,
-		canvas: HTMLCanvasElement
+		threeEl: HTMLElement
 	) {
 		this.app = app;
 		this.ref = ref;
-		this.canvas = canvas;
+		this.threeEl = threeEl;
 		this.background = background;
 		this.darkMode = localStorage.getItem('darkMode') === 'true';
 	}
