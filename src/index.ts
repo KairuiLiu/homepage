@@ -1,5 +1,5 @@
 import Controller from './controller';
-import './utils/useless';
+// import './utils/useless';
 
 new Controller(
 	document.getElementById('app') as HTMLElement,
