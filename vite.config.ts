@@ -2,45 +2,45 @@ import { defineConfig } from 'vite';
 import { resolve } from 'path';
 import path from 'path';
 import styleImport from 'vite-plugin-style-import';
-import { VitePWA } from 'vite-plugin-pwa';
+// import { VitePWA } from 'vite-plugin-pwa';
 
 // https://vitejs.dev/config/
 export default defineConfig({
 	plugins: [
-		VitePWA({
-			registerType: 'autoUpdate',
-			includeAssets: [
-				'favicon.svg',
-				'favicon.ico',
-				'robots.txt',
-				'apple-touch-icon.png',
-			],
-			manifest: {
-				name: "Kairui's Website",
-				short_name: "Kairui's Website",
-				description: "Kairui's Website",
-				theme_color: '#FFE3EC',
-				lang: 'zh-Hans',
-				icons: [
-					{
-						src: 'android-chrome-192x192.png',
-						sizes: '192x192',
-						type: 'image/png',
-					},
-					{
-						src: 'android-chrome-512x512.png',
-						sizes: '512x512',
-						type: 'image/png',
-					},
-					{
-						src: 'android-chrome-512x512.png',
-						sizes: '512x512',
-						type: 'image/png',
-						purpose: 'any maskable',
-					},
-				],
-			},
-		}),
+		// VitePWA({
+		// 	registerType: 'autoUpdate',
+		// 	includeAssets: [
+		// 		'favicon.svg',
+		// 		'favicon.ico',
+		// 		'robots.txt',
+		// 		'apple-touch-icon.png',
+		// 	],
+		// 	manifest: {
+		// 		name: "Kairui's Website",
+		// 		short_name: "Kairui's Website",
+		// 		description: "Kairui's Website",
+		// 		theme_color: '#FFE3EC',
+		// 		lang: 'zh-Hans',
+		// 		icons: [
+		// 			{
+		// 				src: 'android-chrome-192x192.png',
+		// 				sizes: '192x192',
+		// 				type: 'image/png',
+		// 			},
+		// 			{
+		// 				src: 'android-chrome-512x512.png',
+		// 				sizes: '512x512',
+		// 				type: 'image/png',
+		// 			},
+		// 			{
+		// 				src: 'android-chrome-512x512.png',
+		// 				sizes: '512x512',
+		// 				type: 'image/png',
+		// 				purpose: 'any maskable',
+		// 			},
+		// 		],
+		// 	},
+		// }),
 	],
 	publicDir: 'public',
 	server: {
