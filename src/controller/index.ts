@@ -1,6 +1,6 @@
 import Core from '../core';
 import UI from '../ui';
-import { lerpPageOffset } from '../utils/lerp';
+import { lerpBezier, lerpPageOffset } from '../utils/lerp';
 
 class Controller {
 	app: HTMLElement;
@@ -36,10 +36,12 @@ class Controller {
 		this.app
 			.querySelector('#lang')
 			?.addEventListener('click', this.langHandler.bind(this));
+		this.ui.setDarkMode(undefined, true);
 		this.app
 			.querySelector('#dark')
 			?.addEventListener('click', this.darkModeHandler.bind(this));
-		this.ui.setDarkMode(undefined, true);
+		this.resizeHandler();
+		window.addEventListener('resize', this.resizeHandler.bind(this));
 	}
 
 	scrollHandler() {
@@ -56,6 +58,19 @@ class Controller {
 			document.location.replace(document.location.origin);
 		else document.location.replace(`${document.location.origin}/en`);
 		this;
+	}
+
+	resizeHandler() {
+		const canvas = this.threeEl.querySelector('canvas');
+		if (!canvas) return;
+		if (window.innerHeight > window.innerWidth) {
+			canvas.style.opacity = `${
+				1 -
+				lerpBezier(1 - window.innerWidth / window.innerHeight, 0, 0.5, 0.5, 1).y
+			}`;
+		} else {
+			canvas.style.opacity = '1';
+		}
 	}
 
 	darkModeHandler() {

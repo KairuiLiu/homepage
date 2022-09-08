@@ -23,10 +23,12 @@ body {
 
 #threejs {
 	z-index: -1;
+	transition: all 0.3s;
 }
 
 #app {
 	z-index: 1;
+	visibility: visible !important;
 }
 
 #wapper {
@@ -198,8 +200,4 @@ body {
 	.demo {
 		border-color: #e7e7e7;
 	}
-}
-
-#threejs {
-	left: calc(30vmax - 30vmin);
 }
