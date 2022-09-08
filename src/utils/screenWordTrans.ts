@@ -18,9 +18,9 @@ export function s2w(camera: Camera, screenPos: Vector3, targetZ: number) {
 	const widthHalf = width / 2;
 	const heightHalf = height / 2;
 	if (
-		Math.isNaN(screenPos.x) ||
-		Math.isNaN(screenPos.y) ||
-		Math.isNaN(screenPos.z)
+		Number.isNaN(screenPos.x) ||
+		Number.isNaN(screenPos.y) ||
+		Number.isNaN(screenPos.z)
 	)
 		return null;
 	const pos = screenPos.clone();
