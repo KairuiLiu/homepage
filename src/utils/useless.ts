@@ -50,7 +50,7 @@
 	}
 
 	// EGG 02
-	fetch(`${window.location.host}/${e1}_${e2}`).catch(Function.prototype);
+	fetch(`http://${window.location.host}/${e1}_${e2}`).catch(Function.prototype);
 
 	// EGG 03
 
