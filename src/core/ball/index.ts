@@ -1,76 +1,57 @@
-import * as THREE from 'three';
+import {
+	Scene,
+	Mesh,
+	ShaderMaterial,
+	IcosahedronBufferGeometry,
+	Vector3,
+	PlaneBufferGeometry,
+	MeshBasicMaterial,
+	Vector2,
+} from 'three';
+import * as vertexShader from './shaders/vertexShader.shader';
+import * as fragmentShader from './shaders/fragmentShader.shader';
 
 class Ball {
-	points: number[];
+	private geometry: IcosahedronBufferGeometry;
 
-	geometry?: THREE.BufferGeometry;
+	private material: ShaderMaterial;
 
-	material?: THREE.Material;
+	private mesh: Mesh;
 
-	mesh?: THREE.Mesh;
+	private scene: Scene;
 
-	scene: THREE.Scene;
+	private seed: number;
 
-	near: number;
-
-	rotations: { x: number; y: number; z: number };
-
-	far: number;
-
-	constructor(scene) {
-		this.near = 100;
-		this.far = 200;
-		this.points = [];
+	constructor(scene: Scene) {
 		this.scene = scene;
-		this.rotations = { x: 0, y: 0, z: 0 };
-		this.init();
+		this.seed = Math.random() * 123456;
+		this.geometry = new IcosahedronBufferGeometry(10, 50);
+		this.material = new ShaderMaterial({
+			wireframe: true,
+			vertexShader: vertexShader.default,
+			fragmentShader: fragmentShader.default,
+			uniforms: {
+				time: {
+					type: 'f',
+					value: 0.0,
+				},
+			},
+		});
+		this.mesh = new Mesh(this.geometry, this.material);
+		this.scene.add(this.mesh);
 	}
 
-	init() {
-		new THREE.BufferGeometryLoader().load(
-			'/WaltHeadLo_buffergeometry.json',
-			geometry => {
-				geometry.deleteAttribute('normal');
-				geometry.deleteAttribute('uv');
-				this.setupAttributes(geometry);
-				const material1 = new THREE.MeshBasicMaterial({
-					color: 0x000,
-					wireframe: true,
-				});
-				this.mesh = new THREE.Mesh(geometry, material1);
-				this.mesh.position.set(-40, 0, 0);
-				this.scene.add(this.mesh!);
-			}
-		);
+	animate() {
+		this.material.uniforms.time.value =
+			0.025 * window.performance.now() + this.seed;
+		this.updateBlob();
 	}
 
-	setupAttributes(geometry) {
-		const vectors = [
-			new THREE.Vector3(1, 0, 0),
-			new THREE.Vector3(0, 1, 0),
-			new THREE.Vector3(0, 0, 1),
-		];
-		const { position } = geometry.attributes;
-		const centers = new Float32Array(position.count * 3);
-		for (let i = 0, l = position.count; i < l; i += 1) {
-			vectors[i % 3].toArray(centers, i * 3);
+	private updateBlob(): void {
+		if (this.geometry) {
+			this.mesh.rotation.y += 0.001;
+			this.mesh.rotation.x -= 0.0005;
 		}
-		geometry.setAttribute('center', new THREE.BufferAttribute(centers, 3));
-		this;
-	}
-
-	update() {
-		this.rotations.x += Math.cos(Math.random()) / 10;
-		this.rotations.y += Math.cos(Math.random()) / 10;
-		this.rotations.z += Math.cos(Math.random()) / 10;
-		this.mesh?.setRotationFromEuler(
-			new THREE.Euler(
-				this.rotations.x,
-				this.rotations.y,
-				this.rotations.z,
-				'XYZ'
-			)
-		);
 	}
 }
 

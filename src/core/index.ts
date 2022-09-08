@@ -21,29 +21,26 @@ class Core {
 		this.initScene();
 		el.appendChild(this.renderer.domElement);
 		window.addEventListener('resize', this.reload.bind(this));
-		console.log(this.scene);
 		this.tryRender();
 	}
 
 	initScene() {
-		debugger;
 		this.ball = new Ball(this.scene);
 	}
 
 	reload() {
-		this.camera.fov = 80;
+		this.camera.near = 0.1;
+		this.camera.far = 1000;
+		this.camera.fov = 75;
 		this.camera.aspect = window.innerWidth / window.innerHeight;
-		this.camera.near = 0.01;
-		this.camera.far = 233;
+		this.camera.position.z = 31;
 		this.camera.updateProjectionMatrix();
-		this.camera.position.z = 200;
-		// this.scene.fog = new THREE.FogExp2(backgroundColor, config.renderer.fog);
 		this.renderer.setSize(window.innerWidth, window.innerHeight);
 	}
 
 	tryRender() {
 		requestAnimationFrame(this.tryRender.bind(this));
-		this.ball?.update();
+		this.ball!.animate();
 		this.renderer.render(this.scene, this.camera);
 	}
 }
