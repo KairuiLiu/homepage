@@ -131,11 +131,34 @@ body {
 			justify-content: center;
 			align-items: center;
 			display: flex;
-			overflow-y: auto;
+			overflow-x: visible;
+			// overflow-y: auto;
+			overflow-y: visible;
 			.workItem {
-				.h25;
-				padding: 1.5vmax 3vmax;
-				margin: 2vmax 0;
+				position: relative;
+				.item-title {
+					.h25;
+					position: relative;
+					z-index: 4;
+					padding: 3vmax 3vmax;
+					margin: 2vmax 1vmax;
+				}
+				.preview {
+					position: absolute;
+					z-index: 3;
+					left: 50%;
+					top: 50%;
+					transform: translate(-50%, -50%);
+					opacity: 0;
+					transition: opacity 0.4s ease-in-out;
+					img {
+						max-width: 30vmax;
+					}
+				}
+				a {
+					text-decoration: none;
+					color: #270031;
+				}
 			}
 		}
 	}

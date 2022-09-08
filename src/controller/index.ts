@@ -42,6 +42,24 @@ class Controller {
 			?.addEventListener('click', this.darkModeHandler.bind(this));
 		this.resizeHandler();
 		window.addEventListener('resize', this.resizeHandler.bind(this));
+		[...this.app.querySelectorAll('#page3 .workItem')].forEach(
+			(d: HTMLElement) => {
+				const preview = d.getElementsByClassName('preview')[0];
+				const title = d.getElementsByClassName('item-title')[0];
+				title.addEventListener(
+					'mouseenter',
+					this.projectPreviewEnterHandler.bind(this, preview)
+				);
+				title.addEventListener(
+					'mouseout',
+					this.projectPreviewOutHandler.bind(this, preview)
+				);
+				title.addEventListener(
+					'mousemove',
+					this.projectPreviewHandler.bind(this, preview)
+				);
+			}
+		);
 	}
 
 	scrollHandler() {
@@ -75,6 +93,22 @@ class Controller {
 
 	darkModeHandler() {
 		this.ui.setDarkMode();
+	}
+
+	projectPreviewEnterHandler(preview: HTMLElement, e) {
+		preview.style.opacity = '0.8';
+		this;
+	}
+
+	projectPreviewOutHandler(preview: HTMLElement, e) {
+		preview.style.opacity = '0';
+		this;
+	}
+
+	projectPreviewHandler(preview: HTMLElement, e) {
+		preview.style.top = `${e.offsetY}px`;
+		preview.style.left = `${e.offsetX}px`;
+		this;
 	}
 }
 

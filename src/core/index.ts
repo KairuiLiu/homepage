@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { s2w } from '../utils/screenWordTrans';
+import { s2w } from '../utils/screenWorldCoordTrans';
 import Ball from './ball';
 
 class Core {
