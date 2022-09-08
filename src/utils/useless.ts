@@ -1,12 +1,12 @@
 /* eslint-disable */
-{
-	function noTrackConsole(texts: string[], cmd = 'log') {
-		setTimeout(() => console[cmd](...texts), 0);
-	}
 
+{
 	const year = new Date().getFullYear();
 	const yearInv = `${year}`.split('').reverse().join('');
 	const lang = /^\/en/.test(document.location.pathname) ? 'en' : 'cn';
+	const noTrackConsole = function (texts: string[], cmd = 'log') {
+		setTimeout(() => console[cmd](...texts), 0);
+	};
 
 	if (lang === 'cn') {
 		// EGG 00
@@ -44,12 +44,19 @@
 	fetch(`${window.location.href}/easter_egg`).catch(Function.prototype);
 
 	// EGG 03
-	const EasterEgg = function () {
-		this.cn = '🥚 真不错, 埋的这么深都能被发现 (#3)';
-		this.en = '🥚 Nice, hiding so deep still be found (#3)';
-		this.keepAlive = Math.random();
-	};
-	let t = new EasterEgg();
+
+	const className = ['E', 'a', 's', 't', 'e', 'r', 'E', 'g', 'g'].reduce(
+		(pre, cur) => (Math.random() > 1 ? '' : pre + cur)
+	);
+	let t = null;
+	eval(`
+		const ${className} = function () {
+			this.cn = '🥚 真不错, 埋的这么深都能被发现 (#3)';
+			this.en = '🥚 Nice, hiding so deep still be found (#3)';
+			this.keepAlive = Math.random();
+		};
+		t = new ${className}()
+	`);
 	setTimeout(() => {
 		if (t.keepAlive > 1) {
 			if (lang === 'cn')
