@@ -57,14 +57,9 @@
 	// EGG 03
 
 	let t = null;
-	eval(`
-		const ${ee} = function () {
-			this.cn = '🥚 真不错, 埋的这么深都能被发现 (#3)';
-			this.en = '🥚 Nice, hiding so deep still be found (#3)';
-			this.keepAlive = Math.random();
-		};
-		t = new ${ee}()
-	`);
+	eval(
+		`const ${ee} = function () {this.cn = '🥚 真不错, 埋的这么深都能被发现 (#3)';this.en = '🥚 Nice, hiding so deep still be found (#3)';this.keepAlive = Math.random();};t = new ${ee}()`
+	);
 	setTimeout(() => {
 		if (t.keepAlive > 1) {
 			if (lang === 'cn')
