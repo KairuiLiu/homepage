@@ -1,5 +1,4 @@
 /* eslint-disable */
-
 {
 	function noTrackConsole(texts: string[], cmd = 'log') {
 		setTimeout(() => console[cmd](...texts), 0);
