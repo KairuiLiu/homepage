@@ -23,7 +23,7 @@ class Core {
 		el.appendChild(this.renderer.domElement);
 		window.addEventListener('resize', this.reload.bind(this, true));
 		this.tryRender();
-		this.tryRelocate();
+		this.tryResize();
 	}
 
 	initScene() {
@@ -38,7 +38,7 @@ class Core {
 		this.camera.position.z = 31;
 		this.camera.updateProjectionMatrix();
 		this.renderer.setSize(window.innerWidth, window.innerHeight);
-		if (relocate) this.tryRelocate();
+		if (relocate) this.tryResize();
 	}
 
 	tryRender() {
@@ -47,13 +47,19 @@ class Core {
 		this.renderer.render(this.scene, this.camera);
 	}
 
-	tryRelocate() {
+	tryResize() {
 		const range = s2w(
 			this.camera,
 			new THREE.Vector3(window.innerWidth, 0, 0),
 			0
 		);
-		this.ball?.tryRelocate(range?.x, range?.y);
+		this.ball?.tryResize(range?.x, range?.y);
+
+		this.tryRelocate();
+	}
+
+	tryRelocate(pagePercentage = 0) {
+		this.ball?.tryRelocate(pagePercentage);
 	}
 }
 

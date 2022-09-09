@@ -36,6 +36,7 @@ class UI {
 					180;
 			else pre = 0;
 		}
+		if (!!pre || pre < 0) pre = 0;
 		this.background.style.background = `linear-gradient(${
 			135 + 180 * pre
 		}deg, ${

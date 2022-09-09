@@ -69,6 +69,7 @@ class Controller {
 		);
 		this.ui.setAppTop(pagePercentage * clientHeight);
 		this.ui.setBackgroundRotate(pagePercentage);
+		this.core.tryRelocate(pagePercentage);
 	}
 
 	langHandler() {
