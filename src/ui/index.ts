@@ -36,12 +36,17 @@ class UI {
 					180;
 			else pre = 0;
 		}
-		if (!!pre || pre < 0) pre = 0;
+		if (!pre || pre < 0) pre = 0;
 		this.background.style.background = `linear-gradient(${
 			135 + 180 * pre
 		}deg, ${
 			this.darkMode ? '#002424 45%,#24001e 85%' : '#a0eee1 25%, #ffe3ec 75%'
 		})`;
+		if (window.innerHeight < window.innerWidth) {
+			const canvas = this.threeEl.querySelector('canvas');
+			if (pre < 1.2 || pre > 2.2) canvas!.style.opacity = '1';
+			else canvas!.style.opacity = `${1.875 * pre * pre - 6.375 * pre + 5.95}`;
+		}
 	}
 
 	setDarkMode(v?: boolean, keep = false) {

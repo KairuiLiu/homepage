@@ -6,12 +6,10 @@ import {
 	Box3,
 	CatmullRomCurve3,
 	Vector3,
-	BufferGeometry,
-	LineBasicMaterial,
-	Color,
-	Line,
-	Curve,
+	Camera,
 } from 'three';
+import { lerpBallRun } from '../../utils/lerp';
+import { s2w } from '../../utils/screenWorldCoordTrans';
 import * as vertexShader from './shaders/vertexShader.shader';
 import * as fragmentShader from './shaders/fragmentShader.shader';
 
@@ -34,10 +32,14 @@ class Ball {
 
 	private worldHeight: number;
 
-	private curve: Curve;
+	private curve: CatmullRomCurve3[];
 
-	constructor(scene: Scene) {
+	private camera: Camera;
+
+	constructor(scene: Scene, camera: Camera) {
 		this.scene = scene;
+		this.camera = camera;
+		this.curve = [];
 		this.seed = Math.random() * 12345;
 		this.geometry = new IcosahedronBufferGeometry(15, 50);
 		this.material = new ShaderMaterial({
@@ -94,10 +96,8 @@ class Ball {
 			const scaleY = halfHeight / this.maxRadius;
 			const scaleX = (halfWidth - centerX) / this.maxRadius;
 			this.basicScale = Math.min(scaleY, scaleX, 1);
-			this.mesh.scale.set(this.basicScale, this.basicScale, this.basicScale);
-			// this.mesh.position.set(centerX, 0, 0);
 		} else {
-			// this.mesh.position.set(0, 0, 0);
+			this.basicScale = 1;
 		}
 		this.generateCurve();
 	}
@@ -105,41 +105,140 @@ class Ball {
 	generateCurve() {
 		const delta = this.worldWidth - this.worldHeight;
 		const centerX = 0.3 * delta;
-		this.curve = new CatmullRomCurve3(
-			[
-				// 起点
-				new Vector3(centerX, 0, 0),
-
-				new Vector3(-this.worldWidth / 4, -this.worldHeight / 4, -20),
-				new Vector3(
-					(-this.worldWidth / 4) * 3,
-					(-this.worldHeight / 4) * 3,
-					-10
-				),
-				new Vector3((-this.worldHeight / 8) * 3, 0, 0),
-
-				new Vector3(0, 0, 40),
-				new Vector3((this.worldWidth * 3) / 8, (-this.worldHeight * 3) / 8, 0),
-			],
-			false
+		const page2Anchor = document.getElementById('page2-anchor');
+		const v3pos = s2w(
+			this.camera,
+			new Vector3(
+				page2Anchor!.offsetLeft,
+				page2Anchor!.offsetTop - window.innerHeight,
+				0
+			),
+			0
 		);
-		// const geometry = new BufferGeometry().setFromPoints(
-		// 	this.curve.getSpacedPoints(100)
-		// );
-		// const material = new LineBasicMaterial({
-		// 	color: new Color().setHSL(Math.random(), 0.5, 0.5),
-		// });
-		// const curveObject = new Line(geometry, material);
-		// this.scene.add(curveObject);
+		if (this.worldHeight < this.worldWidth) {
+			this.curve = [
+				new CatmullRomCurve3(
+					[
+						// 起点
+						new Vector3(centerX, 0, 0),
+						new Vector3(-this.worldWidth / 4, -this.worldHeight / 4, -20),
+						new Vector3(-this.worldWidth, -this.worldHeight, -10),
+						new Vector3(0, this.worldHeight * 0.3, -10),
+						new Vector3(
+							this.maxRadius * 0.3 + v3pos!.x,
+							v3pos!.y - this.maxRadius * 0.3,
+							0
+						),
+					],
+					false
+				),
+				new CatmullRomCurve3(
+					[
+						new Vector3(
+							this.maxRadius * 0.3 + v3pos!.x,
+							v3pos!.y - this.maxRadius * 0.3,
+							0
+						),
+						new Vector3(0, 0, 0),
+					],
+					false
+				),
+				new CatmullRomCurve3(
+					[
+						new Vector3(0, 0, 0),
+						new Vector3(this.worldWidth, -this.worldHeight, -10),
+						new Vector3(
+							(this.worldWidth * 3) / 8,
+							(-this.worldHeight * 3) / 8,
+							0
+						),
+					],
+					false
+				),
+				new CatmullRomCurve3(
+					[
+						new Vector3(
+							(this.worldWidth * 3) / 8,
+							(-this.worldHeight * 3) / 8,
+							0
+						),
+						new Vector3(
+							(this.worldWidth * 3) / 8,
+							(-this.worldHeight * 3) / 8,
+							0
+						),
+					],
+					false
+				),
+			];
+		} else {
+			this.curve = [
+				new CatmullRomCurve3(
+					[
+						// 起点
+						new Vector3(0, 0, 0),
+
+						new Vector3(-this.worldWidth / 4, -this.worldHeight / 4, -20),
+						new Vector3(-this.worldWidth, -this.worldHeight, -10),
+						new Vector3(
+							this.maxRadius * 0.2 + v3pos!.x,
+							v3pos!.y - this.maxRadius * 0.2,
+							0
+						),
+					],
+					false
+				),
+				new CatmullRomCurve3(
+					[
+						new Vector3(
+							this.maxRadius * 0.2 + v3pos!.x,
+							v3pos!.y - this.maxRadius * 0.2,
+							0
+						),
+						new Vector3(0, 0, 0),
+					],
+					false
+				),
+				new CatmullRomCurve3(
+					[
+						new Vector3(0, 0, 0),
+						new Vector3(this.worldWidth, -this.worldHeight, -10),
+						new Vector3(
+							(this.worldWidth * 3) / 8,
+							(-this.worldHeight * 3) / 8,
+							0
+						),
+					],
+					false
+				),
+				new CatmullRomCurve3(
+					[
+						new Vector3(
+							(this.worldWidth * 3) / 8,
+							(-this.worldHeight * 3) / 8,
+							0
+						),
+						new Vector3(
+							(this.worldWidth * 3) / 8,
+							(-this.worldHeight * 3) / 8,
+							0
+						),
+					],
+					false
+				),
+			];
+		}
 	}
 
 	tryRelocate(pagePercentage: number) {
-		if (this.worldWidth > this.worldHeight) {
-			const pos = this.curve.getPointAt(pagePercentage / 3);
-			this.mesh.position.set(pos.x, pos.y, pos.z);
-		} else {
-			this.mesh.position.set(0, 0, 0);
-		}
+		pagePercentage =
+			Math.floor(pagePercentage) +
+			lerpBallRun(pagePercentage - Math.floor(pagePercentage));
+		const pos = this.curve[Math.floor(pagePercentage)].getPointAt(
+			pagePercentage - Math.floor(pagePercentage)
+		);
+		this.mesh.position.set(pos.x, pos.y, pos.z);
+
 		switch (true) {
 			case pagePercentage <= 1:
 				this.mesh.scale.set(
@@ -157,9 +256,9 @@ class Ball {
 				break;
 			case pagePercentage <= 3:
 				this.mesh.scale.set(
-					this.basicScale * (6 - 5.8 * (pagePercentage - 2)),
-					this.basicScale * (6 - 5.8 * (pagePercentage - 2)),
-					this.basicScale * (6 - 5.8 * (pagePercentage - 2))
+					this.basicScale * (6 - 5.9 * (pagePercentage - 2)),
+					this.basicScale * (6 - 5.9 * (pagePercentage - 2)),
+					this.basicScale * (6 - 5.9 * (pagePercentage - 2))
 				);
 				break;
 			default:

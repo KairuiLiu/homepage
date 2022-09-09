@@ -13,8 +13,11 @@ class Core {
 
 	ball?: Ball;
 
-	constructor(el: HTMLElement) {
+	getPagePercentage: () => number;
+
+	constructor(el: HTMLElement, getPagePercentage: () => number) {
 		this.threeEl = el;
+		this.getPagePercentage = getPagePercentage;
 		this.camera = new THREE.PerspectiveCamera();
 		this.scene = new THREE.Scene();
 		this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
@@ -27,7 +30,7 @@ class Core {
 	}
 
 	initScene() {
-		this.ball = new Ball(this.scene);
+		this.ball = new Ball(this.scene, this.camera);
 	}
 
 	reload(relocate = true) {
@@ -53,13 +56,13 @@ class Core {
 			new THREE.Vector3(window.innerWidth, 0, 0),
 			0
 		);
-		this.ball?.tryResize(range?.x, range?.y);
+		this.ball?.tryResize(range!.x, range!.y);
 
 		this.tryRelocate();
 	}
 
-	tryRelocate(pagePercentage = 0) {
-		this.ball?.tryRelocate(pagePercentage);
+	tryRelocate() {
+		this.ball?.tryRelocate(this.getPagePercentage());
 	}
 }
 

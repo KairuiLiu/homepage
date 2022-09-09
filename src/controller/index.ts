@@ -25,7 +25,7 @@ class Controller {
 		this.ref = ref;
 		this.threeEl = threeEl;
 		this.background = background;
-		this.core = new Core(threeEl);
+		this.core = new Core(threeEl, this.getPagePercentage.bind(this));
 		this.ui = new UI(app, background, ref, threeEl);
 		this.listen();
 	}
@@ -41,6 +41,9 @@ class Controller {
 			.querySelector('#dark')
 			?.addEventListener('click', this.darkModeHandler.bind(this));
 		this.resizeHandler();
+		this.app
+			.querySelector('#totop')
+			?.addEventListener('click', this.toTopHandler.bind(this));
 		window.addEventListener('resize', this.resizeHandler.bind(this));
 		[...this.app.querySelectorAll('#page3 .workItem')].forEach(
 			(d: HTMLElement) => {
@@ -63,13 +66,10 @@ class Controller {
 	}
 
 	scrollHandler() {
-		const { clientHeight } = document.body;
-		const pagePercentage = lerpPageOffset(
-			-this.ref.getBoundingClientRect().top
-		);
-		this.ui.setAppTop(pagePercentage * clientHeight);
+		const pagePercentage = this.getPagePercentage();
+		this.ui.setAppTop(pagePercentage * document.body.clientHeight);
 		this.ui.setBackgroundRotate(pagePercentage);
-		this.core.tryRelocate(pagePercentage);
+		this.core.tryRelocate();
 	}
 
 	langHandler() {
@@ -96,12 +96,12 @@ class Controller {
 		this.ui.setDarkMode();
 	}
 
-	projectPreviewEnterHandler(preview: HTMLElement, e) {
+	projectPreviewEnterHandler(preview: HTMLElement) {
 		preview.style.opacity = '0.8';
 		this;
 	}
 
-	projectPreviewOutHandler(preview: HTMLElement, e) {
+	projectPreviewOutHandler(preview: HTMLElement) {
 		preview.style.opacity = '0';
 		this;
 	}
@@ -110,6 +110,22 @@ class Controller {
 		preview.style.top = `${e.offsetY}px`;
 		preview.style.left = `${e.offsetX}px`;
 		this;
+	}
+
+	toTopHandler() {
+		const speed = (document.documentElement.scrollTop / 1500) * 41;
+		const token = setInterval(() => {
+			document.documentElement.scrollTop -= speed;
+			if (document.documentElement.scrollTop <= 0) {
+				document.documentElement.scrollTop = 0;
+				clearInterval(token);
+			}
+		}, 41);
+		this;
+	}
+
+	getPagePercentage() {
+		return lerpPageOffset(-this.ref.getBoundingClientRect().top);
 	}
 }
 

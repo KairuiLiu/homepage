@@ -38,6 +38,7 @@ body {
 
 #app {
 	& > div[id^='page'] {
+		// position: relative;
 		box-sizing: border-box;
 		display: flex;
 		height: 100%;
@@ -225,4 +226,13 @@ body {
 	.demo {
 		border-color: #e7e7e7;
 	}
+}
+
+#totop {
+	position: absolute;
+	width: 7vmax;
+	height: 7vmax;
+	left: 87.5vw;
+	top: 387.5vh;
+	transform: translate(-50%, -50%);
 }

@@ -17,3 +17,8 @@ export function lerpPageOffset(top: number) {
 	const pageHeight = Math.floor(top / clientHeight);
 	return pageHeight + lerpBezier(pageOffset / clientHeight, 0.8, 0, 0.8, 0).y;
 }
+
+export function lerpBallRun(pre: number) {
+	return lerpBezier(pre, 0, 0, 0, 1).y;
+	// return pre;
+}
