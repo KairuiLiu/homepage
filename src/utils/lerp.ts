@@ -19,6 +19,6 @@ export function lerpPageOffset(top: number) {
 }
 
 export function lerpBallRun(pre: number) {
-	return lerpBezier(pre, 0, 0, 0, 1).y;
+	return lerpBezier(pre, 0.15, 1, 0, 1).y;
 	// return pre;
 }
