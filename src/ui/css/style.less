@@ -178,11 +178,15 @@ body {
 		.subsites {
 			width: auto;
 			display: grid;
-			grid-template-columns: 1fr 1fr;
+			grid-template-columns: repeat(2, auto);
 			a {
+				margin: 0 2vmax 0 1vmax;
 				text-decoration: none;
 				color: #270031;
 				position: relative;
+				&.no-padding {
+					margin-left: 0;
+				}
 			}
 
 			a:after {
