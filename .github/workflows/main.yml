@@ -49,13 +49,3 @@ jobs:
           REMOTE_HOST: '104.168.253.160'
           REMOTE_USER: root
           TARGET: /home/liukairui/wwwroot/home
-
-      - name: Deploy to Server
-        uses: easingthemes/ssh-deploy@v2.1.5
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
-          ARGS: '-rltgoDzvO --delete'
-          SOURCE: dist/*
-          REMOTE_HOST: '121.4.206.222'
-          REMOTE_USER: root
-          TARGET: /home/wwwroot/home
